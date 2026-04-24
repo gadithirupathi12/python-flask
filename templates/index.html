@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+<head><title>Employee Directory</title></head>
+<body>
+  <h1>Employee Directory</h1>
+  <input type="text" id="empName" placeholder="Enter employee name" />
+  <button id="addBtn" onclick="addEmployee()">Add Employee</button>
+  <ul id="empList"></ul>
+
+  <script>
+    async function addEmployee() {
+      const name = document.getElementById("empName").value.trim();
+      if (!name) return;
+      await fetch("/employees", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ name })
+      });
+      document.getElementById("empName").value = "";
+      loadEmployees();
+    }
+
+    async function loadEmployees() {
+      const res = await fetch("/employees");
+      const list = await res.json();
+      const ul = document.getElementById("empList");
+      ul.innerHTML = "";
+      list.forEach(e => {
+        const li = document.createElement("li");
+        li.textContent = e.name;
+        ul.appendChild(li);
+      });
+    }
+
+    loadEmployees();
+  </script>
+</body>
+</html>
