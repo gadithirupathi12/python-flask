@@ -27,14 +27,14 @@ jobs:
 
       - name: Start Flask app in background
         run: |
-          APP_HOST=65.2.128.53 APP_PORT=5000 python app.py &
+          APP_HOST=127.0.0.1 APP_PORT=5000 python app.py &
           echo "Waiting for Flask to start..."
           sleep 3
         env:
-          APP_HOST: 65.2.128.53
+          APP_HOST: 127.0.0.1
           APP_PORT: 5000
 
       - name: Run Selenium tests with pytest
         run: pytest tests/ -v
         env:
-          APP_URL: http://65.2.128.53:5000
+          APP_URL: http://127.0.0.1:5000
