@@ -37,4 +37,4 @@ jobs:
       - name: Run Selenium tests with pytest
         run: pytest tests/ -v
         env:
-          APP_URL: http://127.0.0.1:5000
+          APP_URL: http://65.2.128.53:5000
