@@ -1,15 +1,16 @@
 from selenium import webdriver
 from selenium.webdriver.chrome.options import Options
-import pytest
 
-@pytest.fixture
-def driver():
+def test_app_loads():
     opts = Options()
     opts.add_argument("--headless=new")
     opts.add_argument("--no-sandbox")
     opts.add_argument("--disable-dev-shm-usage")
-    opts.add_argument("--disable-gpu")
 
     driver = webdriver.Chrome(options=opts)
-    yield driver
+
+    driver.get("http://127.0.0.1:5000")
+
+    assert "Employee" in driver.page_source  # adjust based on your page
+
     driver.quit()
