@@ -2,9 +2,9 @@ import pytest
 from selenium import webdriver
 from selenium.webdriver.chrome.options import Options
 
-VM_IP   = '192.168.1.100'   # Replace with your actual VM IP
+VM_IP   = '43.205.142.37'   # Replace with your actual VM IP
 VM_PORT = '5000'
-BASE_URL = f'http://{VM_IP}:{VM_PORT}'
+from tests.conftest import BASE_URL   ✅
 
 @pytest.fixture(scope='module')
 def driver():
